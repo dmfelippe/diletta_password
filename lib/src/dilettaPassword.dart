@@ -6,11 +6,15 @@ class DilettaPassword extends StatefulWidget {
   final int size;
   final bool onlyNumbers;
   final Color color;
+  final IconData notShowPassword;
+  final IconData showPassword;
 
   DilettaPassword({
     @required this.size,
     @required this.onlyNumbers,
-    this.color = Colors.white
+    this.color = Colors.white,
+    this.notShowPassword = Icons.visibility_off,
+    this.showPassword = Icons.visibility
   });
 
   State<DilettaPassword> createState() => _DilettaPasswordState();
@@ -23,6 +27,7 @@ class _DilettaPasswordState extends State<DilettaPassword> {
   String _password;
   DilettaPasswordService _passwordService;
   bool _showPassword = false;
+  IconData _showPasswordIcon, _notShowPasswordIcon;
 
   @override
   void initState() {
@@ -30,6 +35,8 @@ class _DilettaPasswordState extends State<DilettaPassword> {
     _size = widget.size;
     _onlyNumbers = widget.onlyNumbers;
     _color = widget.color;
+    _notShowPasswordIcon = widget.notShowPassword;
+    _showPasswordIcon = widget.showPassword;
     _passwordService = DilettaPasswordService();
     _passwordService.setController(_onlyNumbers, _size);
     _password = _passwordService.password.text;
@@ -121,7 +128,7 @@ class _DilettaPasswordState extends State<DilettaPassword> {
       child: Align(
         alignment: Alignment.centerRight,
         child: Icon(
-          _showPassword ? Icons.visibility : Icons.visibility_off,
+          _showPassword ? _showPasswordIcon : _notShowPasswordIcon,
           color: _color,
           size: 24.0,
         ),

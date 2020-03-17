@@ -41,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
               left: 50.0
             ),
             width: MediaQuery.of(context).size.width,
-            child: DilettaPassword(onlyNumbers: true, size: 6, color: Colors.white)
+            child: DilettaPassword(onlyNumbers: true, size: 6, color: Colors.white, showPassword: Icons.ac_unit, notShowPassword: Icons.access_alarm)
           ),
           Container(
             margin: EdgeInsets.all(40.0),
